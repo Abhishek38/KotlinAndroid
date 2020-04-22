@@ -10,8 +10,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <com.jgabrielfreitas.core.BlurImageView
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/container_"/>
+        <ImageView
             android:id="@+id/background_"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

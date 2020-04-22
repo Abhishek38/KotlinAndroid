@@ -16,6 +16,7 @@ class ListAdapter(var items:ArrayList<DataModel>, var dataClick: onItemClick):Re
         var back=itemView.background_
         var sign=itemView.signature
 
+
         fun bind(model:DataModel,clickData:onItemClick){
             var requestoptions=RequestOptions()
                 .placeholder(R.drawable.ic_launcher_foreground)
@@ -26,8 +27,11 @@ class ListAdapter(var items:ArrayList<DataModel>, var dataClick: onItemClick):Re
                 .into(front)
             Glide.with(itemView.context)
                 .applyDefaultRequestOptions(requestoptions)
+                .asDrawable()
                 .load(model.BImage)
                 .into(back)
+
+
             sign.setText(model.Sign)
             itemView.setOnClickListener {
                 clickData.onclick(model,absoluteAdapterPosition)

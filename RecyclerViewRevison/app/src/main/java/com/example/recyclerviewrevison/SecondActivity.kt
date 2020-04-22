@@ -11,7 +11,6 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-        CompleteImage
         DescriptionText.setText(intent.getStringExtra("Desc"))
         var roptio=RequestOptions()
             .placeholder(R.drawable.ic_launcher_background)
