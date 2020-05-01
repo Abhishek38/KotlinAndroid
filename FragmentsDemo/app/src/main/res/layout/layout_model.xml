@@ -6,14 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="300dp"
     android:id="@+id/cardHolder"
+    app:cardCornerRadius="50dp"
+    app:cardElevation="5dp"
+    app:cardPreventCornerOverlap="true"
     android:background="@drawable/pill_shape">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/container_"/>
+
         <ImageView
             android:id="@+id/background_"
             android:layout_width="match_parent"

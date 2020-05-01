@@ -2,10 +2,13 @@ package com.example.fragmentsdemo
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fragmentsdemo.Models.DataModels
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity(),clickListner{
 
@@ -13,12 +16,24 @@ class MainActivity : AppCompatActivity(),clickListner{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d("MyApp","Main Activity loaded")
         initRecyclerView()
 
+
+
     }
+
+    fun initFragment(){
+        var transaction = supportFragmentManager.beginTransaction()
+        val fragment =FragmentD()
+        transaction.replace(R.id.container_,fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
     fun initRecyclerView(){
         recycler_view.apply {
-            layoutManager=LinearLayoutManager(this@MainActivity)
+            layoutManager= LinearLayoutManager(context)
             val spacing=itemDecorator(10)
             addItemDecoration(spacing)
             adapter=ListAdapter(DataSource.createDataSet(),this@MainActivity)
@@ -28,30 +43,17 @@ class MainActivity : AppCompatActivity(),clickListner{
         }
 
     }
-    fun initFragment(){
-        var transaction = supportFragmentManager.beginTransaction()
-        val fragment =SecondScreen()
-        transaction.replace(R.id.container_,fragment)
-        transaction.commit()
-    }
 
-    override fun Onclick(data: DataModels, i: Int) {
-//        var intent=Intent(this,SecondScreen::class.java)
-//        intent.putExtra("image",items.mF_Image)
-//        intent.putExtra("Desc",items.mDesc)
-//        startActivity(intent)
-        val bundle = Bundle()
-        bundle.putString("image",data.mF_Image )
-        bundle.putString("Desc",data.mDesc)
-// set Fragmentclass Arguments
-// set Fragmentclass Arguments
-        val fragobj = SecondScreen()
-        fragobj.setArguments(bundle)
-
+    override fun Onclick(items: DataModels, i: Int) {
+//        val bundle = Bundle()
+//        Log.d("MyApp","OnClick on FirstFragment Working")
+//        bundle.putString("image",items.mF_Image.get(i).toString() )
+//        bundle.putString("Desc",items.mDesc.get(i).toString())
+//        val fragobj = FragmentD()
+//        fragobj.setArguments(bundle)
+        FragmentD.newInstance(items.mF_Image,items.mDesc)
         initFragment()
-
     }
-    fun sendData(){
 
-    }
+
 }
